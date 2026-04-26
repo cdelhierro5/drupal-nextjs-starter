@@ -1,0 +1,10 @@
+name: 'Next.js GraphQL API'
+type: module
+description: 'Exposes a GraphQL schema optimised for Next.js headless consumption. Provides Article and Page types with full field resolution.'
+package: 'Custom'
+core_version_requirement: ^10 || ^11
+version: '1.0.0'
+
+dependencies:
+  - drupal:node
+  - graphql:graphql

@@ -1,0 +1,21 @@
+name: drupal-nextjs-backend
+type: drupal10
+docroot: web
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mysql
+  version: "8.0"
+composer_version: "2"
+
+# Expose extra port so Next.js can reach Drupal during dev
+additional_hostnames:
+  - api
+
+web_environment:
+  - PHP_MEMORY_LIMIT=512M
+  - GRAPHQL_DEBUG=1
+
+hooks:
+  post-start:
+    - exec: "[ -f /var/www/html/web/sites/default/settings.php ] && echo 'Already installed. Run: ddev drush cr' || echo 'Run: ddev drupal-setup'"

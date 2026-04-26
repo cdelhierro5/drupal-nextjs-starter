@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Backend (Drupal)
+backend/vendor/
+backend/web/core/
+backend/web/modules/contrib/
+backend/web/themes/contrib/
+backend/web/sites/default/files/
+backend/web/sites/default/settings.php
+backend/web/sites/default/settings.local.php
+backend/composer.lock
+
+# Frontend (Next.js)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.*.local
+
+# DDEV
+backend/.ddev/.gitignore
+backend/.ddev/import-db/

@@ -1,0 +1,71 @@
+# GraphQL Schema — Next.js API
+# Exposes Drupal content as a typed GraphQL API consumed by the Next.js frontend.
+
+type Query {
+  # Fetch a single article by its path alias (e.g. /blog/my-article)
+  article(path: String!): Article
+
+  # Paginated list of published articles, newest first
+  articles(limit: Int = 10, offset: Int = 0): ArticleConnection!
+
+  # Fetch a basic page by path alias
+  page(path: String!): Page
+
+  # Site-wide metatags for a given path
+  metatags(path: String!): [Metatag!]!
+}
+
+# ── Content types ──────────────────────────────────────────────────────────────
+
+type Article {
+  id: ID!
+  title: String!
+  path: String!
+  summary: String
+  body: String
+  author: Author
+  image: MediaImage
+  tags: [Term!]!
+  publishedAt: String
+  updatedAt: String
+  metatags: [Metatag!]!
+}
+
+type Page {
+  id: ID!
+  title: String!
+  path: String!
+  body: String
+  metatags: [Metatag!]!
+}
+
+# ── Supporting types ───────────────────────────────────────────────────────────
+
+type ArticleConnection {
+  items: [Article!]!
+  total: Int!
+  hasMore: Boolean!
+}
+
+type Author {
+  name: String!
+  picture: MediaImage
+}
+
+type MediaImage {
+  url: String!
+  alt: String
+  width: Int
+  height: Int
+}
+
+type Term {
+  id: ID!
+  name: String!
+  path: String
+}
+
+type Metatag {
+  name: String!
+  content: String!
+}
